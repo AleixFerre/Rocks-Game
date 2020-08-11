@@ -15,6 +15,8 @@ let initPlayer = {
 
 let player = JSON.parse(JSON.stringify(initPlayer));
 
+let tilemap;
+let tilemap_resolution = 50;
 
 let finish = false; // Has the game finished?
 let win = false; // Did you won?
@@ -52,23 +54,24 @@ let final = {
 //  -> 4  --  jugador
 let grid = []; // Vector de 1D per la matriu 2D del mapa
 
-let chars = ["_", "[ ]", "O", "F", "ö"]; // Array de correspondencia amb els valors
-
 let p;
 let restartBtn;
 
 function preload() {
     roboto = loadFont("Roboto-Black.ttf");
+    tilemap = loadImage("./assets/tilemap.png");
 }
 
 function setup() {
     textFont(roboto);
 
     p = createP();
+
+    createCanvas(mida, mida);
+
     restartBtn = createButton("Restart");
     restartBtn.mouseClicked(restart);
 
-    createCanvas(mida, mida);
     makeGrid();
 }
 
@@ -99,15 +102,9 @@ function draw() {
             win = false;
         }
 
-        translate(resolution / 2, resolution / 2);
-
-        textSize(22);
-        fill(255);
-        textAlign(CENTER);
-
         for (let i = 0; i < quantitat; i++) {
             for (let j = 0; j < quantitat; j++) {
-                text(chars[grid[i + j * quantitat].toString()], i * resolution, j * resolution);
+                mostrarTextura(grid[i + j * quantitat], i * resolution, j * resolution);
             }
         }
     }
@@ -227,4 +224,9 @@ function restart() {
     } else {
         seconds = secondsInit + floor(millis() / 1000);
     }
+}
+
+function mostrarTextura(i, x, y) {
+    // Mostra la textura i a les coords x,y
+    image(tilemap, x, y, resolution, resolution, i * tilemap_resolution, 0, tilemap_resolution, tilemap_resolution);
 }
