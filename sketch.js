@@ -214,8 +214,6 @@ function keyPressed() {
 
 function restart() {
 
-    print(player, initPlayer);
-
     player = JSON.parse(JSON.stringify(initPlayer));
     rocks = initRocks;
 

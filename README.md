@@ -1,6 +1,6 @@
-# Rocks-Game
+# Rocks Game
 
-Simple p5.js canvas minigame.
+Simple p5.js canvas minigame about pushing rocks to the finish.
 
 [![example1](https://raw.githubusercontent.com/CatalaHD/Rocks-Game/master/assets/example.png)](https://catalahd.github.io/Rocks-Game/)
 
